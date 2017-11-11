@@ -1,0 +1,8 @@
+{
+  "id": "378840310656270336",
+  "name": "BDMC",
+  "description": "BDMC bot",
+  "icon": null,
+  "secret": "_bb_pUrvc8BnMqnsl2jSNsiFPK1qOHTw",
+  "redirect_uris": ["http://localhost:5000/callback"],
+}
