@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Primera Battle Sentinel
 // @namespace    chatgpt.openai
-// @version      3.3.0
-// @description  Battle timer/BH intel plus live Gold-value labels for Primera products.
+// @version      3.4.0
+// @description  Battle timer/BH intel, IndexedDB cache, adaptive polling, and live Gold-value labels for Primera products.
 // @updateURL    https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js
 // @downloadURL  https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js
-// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/battle.js?v=3.3.0
-// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/values.js?v=3.3.0
+// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/battle.js?v=3.4.0
+// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/values.js?v=3.4.0
 // @match        https://primera.e-sim.org/*
 // @match        https://www.primera.e-sim.org/*
 // @grant        GM_notification
@@ -16,17 +16,14 @@
 // ==/UserScript==
 
 // Logic lives in battle.js and values.js so future updates stay small and modular.
-// This inline block adds a manual update checker directly to the Battle Sentinel header.
+// Manual updater button.
 (() => {
   'use strict';
 
   const UPDATE_URL = 'https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js';
-  const LOCAL_VERSION = '3.3.0';
+  const LOCAL_VERSION = '3.4.0';
 
-  function parts(v) {
-    return String(v || '0').split('.').map(x => parseInt(x, 10) || 0);
-  }
-
+  function parts(v) { return String(v || '0').split('.').map(x => parseInt(x, 10) || 0); }
   function newer(remote, local) {
     const a = parts(remote), b = parts(local), n = Math.max(a.length, b.length);
     for (let i = 0; i < n; i++) {
@@ -36,7 +33,6 @@
     }
     return false;
   }
-
   function say(msg) {
     const toast = document.getElementById('pbs3-toast');
     if (toast) {
@@ -44,11 +40,8 @@
       toast.style.display = 'block';
       clearTimeout(say._t);
       say._t = setTimeout(() => { toast.style.display = 'none'; }, 3500);
-    } else {
-      console.log('[Battle Sentinel]', msg);
-    }
+    } else console.log('[Battle Sentinel]', msg);
   }
-
   async function checkUpdate(btn) {
     const old = btn.textContent;
     btn.disabled = true;
@@ -60,7 +53,6 @@
       const m = text.match(/^\/\/\s*@version\s+([^\s]+)\s*$/m);
       if (!m) throw new Error('remote version not found');
       const remote = m[1].trim();
-
       if (newer(remote, LOCAL_VERSION)) {
         say(`Update found: v${LOCAL_VERSION} → v${remote}. Opening Tampermonkey installer…`);
         btn.textContent = `⬆ v${remote}`;
@@ -82,12 +74,10 @@
       if (btn.textContent === '…') btn.textContent = old;
     }
   }
-
   function installButton() {
     if (document.getElementById('pbs3-update')) return true;
     const head = document.getElementById('pbs3-head');
     if (!head) return false;
-
     const controls = head.lastElementChild || head;
     const btn = document.createElement('button');
     btn.id = 'pbs3-update';
@@ -99,11 +89,8 @@
     controls.insertBefore(btn, controls.firstChild);
     return true;
   }
-
   if (!installButton()) {
-    const timer = setInterval(() => {
-      if (installButton()) clearInterval(timer);
-    }, 500);
+    const timer = setInterval(() => { if (installButton()) clearInterval(timer); }, 500);
     setTimeout(() => clearInterval(timer), 30000);
   }
 })();
