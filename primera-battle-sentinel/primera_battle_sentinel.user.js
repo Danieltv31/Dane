@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         Primera Battle Sentinel
 // @namespace    chatgpt.openai
-// @version      3.2.1
+// @version      3.3.0
 // @description  Battle timer/BH intel plus live Gold-value labels for Primera products.
 // @updateURL    https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js
 // @downloadURL  https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js
-// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/battle.js?v=3.2.1
-// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/values.js?v=3.2.1
+// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/battle.js?v=3.3.0
+// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/values.js?v=3.3.0
 // @match        https://primera.e-sim.org/*
 // @match        https://www.primera.e-sim.org/*
 // @grant        GM_notification
@@ -21,7 +21,7 @@
   'use strict';
 
   const UPDATE_URL = 'https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js';
-  const LOCAL_VERSION = '3.2.1';
+  const LOCAL_VERSION = '3.3.0';
 
   function parts(v) {
     return String(v || '0').split('.').map(x => parseInt(x, 10) || 0);
