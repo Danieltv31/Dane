@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Primera Battle Sentinel
 // @namespace    chatgpt.openai
-// @version      3.5.0
+// @version      3.5.1
 // @description  Battle timer/BH intel, IndexedDB cache, adaptive polling, shared network cache, and live Gold-value labels for Primera products.
 // @updateURL    https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js
 // @downloadURL  https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js
-// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/network-cache.js?v=3.5.0
-// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/battle.js?v=3.5.0
-// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/values.js?v=3.5.0
+// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/network-cache.js?v=3.5.1
+// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/battle.js?v=3.5.1
+// @require      https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/values.js?v=3.5.1
 // @match        https://primera.e-sim.org/*
 // @match        https://www.primera.e-sim.org/*
 // @grant        GM_notification
@@ -22,7 +22,7 @@
   'use strict';
 
   const UPDATE_URL = 'https://raw.githubusercontent.com/Danieltv31/Dane/master/primera-battle-sentinel/primera_battle_sentinel.user.js';
-  const LOCAL_VERSION = '3.5.0';
+  const LOCAL_VERSION = '3.5.1';
 
   function parts(v) { return String(v || '0').split('.').map(x => parseInt(x, 10) || 0); }
   function newer(remote, local) {
