@@ -1,0 +1,10 @@
+{
+  "name": "dane-torn-console",
+  "private": true,
+  "scripts": {
+    "test": "node --check Dane-Torn-Console.user.js && node test.cjs"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.12"
+  }
+}
